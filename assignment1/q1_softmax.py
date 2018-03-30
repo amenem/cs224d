@@ -22,6 +22,14 @@ def softmax(x):
 
     ### YOUR CODE HERE
 
+    shape_input = x.shape
+    if len(shape_input)==1:
+        return np.exp(x-np.max(x))/np.sum(np.exp(x-np.max(x)))
+    elif len(shape_input)>1:
+        m1=np.max(x,axis=1).reshape(-1,1)
+        e= np.exp(x-m1)
+        return e/np.sum(e,axis=1)
+
     ### END YOUR CODE
     
     return x
